@@ -145,23 +145,6 @@
                 }
             }
 
-            console.log("VK TEST");
-            vkBridge.send("VKWebAppInit", {});
-            console.log(bridge);
-            vkBridge.subscribe((e) => {
-                if (e.detail.type === 'VKWebAppViewHide') {
-                    console.log(2);
-                    sendMessageToUnity('OnVisibleGame', false)
-                }
-            });
-
-            vkBridge.subscribe((e) => {
-                if (e.detail.type === 'VKWebAppViewRestore') {
-                    console.log(3);
-                    sendMessageToUnity('OnVisibleGame', true)
-                }
-            });
-
             // initialization
             bridge
                 .initialize(bridgeOptions)
@@ -836,6 +819,24 @@
                         sendMessageToUnity('OnAchievementsGetListCompletedFailed', 'false')
                     })
             }
+            
+
+            console.log("VK TEST");
+            vkBridge.send("VKWebAppInit", {});
+            console.log(vkBridge);
+            vkBridge.subscribe((e) => {
+                if (e.detail.type === 'VKWebAppViewHide') {
+                    console.log(2);
+                    sendMessageToUnity('OnVisibleGame', false)
+                }
+            });
+
+            vkBridge.subscribe((e) => {
+                if (e.detail.type === 'VKWebAppViewRestore') {
+                    console.log(3);
+                    sendMessageToUnity('OnVisibleGame', true)
+                }
+            });
         </script>
     </body>
 </html>
