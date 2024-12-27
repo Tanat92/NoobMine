@@ -159,15 +159,15 @@
                     }
                     if (bridge.platform.id === bridge.PLATFORM_ID.VK) {
                         console.log("VK TEST");
-                        console.log(vkbridge);
-                        vkBridge.subscribe((e) => {
+                        console.log(bridge);
+                        bridge.subscribe((e) => {
                             if (e.detail.type === 'VKWebAppViewHide') {
                                 console.log(2);
                                 sendMessageToUnity('OnVisibleGame', true)
                             }
                         });
 
-                        vkBridge.subscribe((e) => {
+                        bridge.subscribe((e) => {
                             if (e.detail.type === 'VKWebAppViewRestore') {
                                 console.log(3);
                                 sendMessageToUnity('OnVisibleGame', false)
