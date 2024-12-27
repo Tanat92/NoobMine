@@ -148,14 +148,14 @@
             console.log("VK TEST");
             vkBridge.send("VKWebAppInit", {});
             console.log(bridge);
-            bridge.subscribe((e) => {
+            vkBridge.subscribe((e) => {
                 if (e.detail.type === 'VKWebAppViewHide') {
                     console.log(2);
                     sendMessageToUnity('OnVisibleGame', true)
                 }
             });
 
-            bridge.subscribe((e) => {
+            vkBridge.subscribe((e) => {
                 if (e.detail.type === 'VKWebAppViewRestore') {
                     console.log(3);
                     sendMessageToUnity('OnVisibleGame', false)
