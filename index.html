@@ -61,7 +61,6 @@
             <div id="progress-bar"><div id="progress-bar-fill"></div></div>
         </div>
         <script src="./playgama-bridge.js"></script>
-        <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
         <script>
             if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
                 let meta = document.createElement('meta')
@@ -159,14 +158,14 @@
                     }
 
                     let unityLoader = document.createElement('script')
-                    unityLoader.src = 'Build/11b8e8d31ab246f497955dc3548feb00.loader.js'
+                    unityLoader.src = 'Build/355f44cdab09dcaebd35e0ff61e1d6f3.loader.js'
                     unityLoader.onload = () => {
                         createUnityInstance(
                             canvas,
                             {
-                                dataUrl: 'Build/f9da227da7c390fbd51d7632d57e0a25.data.unityweb',
+                                dataUrl: 'Build/65e06afb49e46e5517d1a6b980740b8c.data.unityweb',
                                 frameworkUrl: 'Build/c4600aed2c227190c2b6697dd818f6be.framework.js.unityweb',
-                                codeUrl: 'Build/2324be0ba9ccfc99aa5615e43def72ed.wasm.unityweb',
+                                codeUrl: 'Build/d632672b92ec5d046c0d619afd5dfc2c.wasm.unityweb',
                                 streamingAssetsUrl: 'StreamingAssets',
                                 companyName: 'Tanat',
                                 productName: 'Mine2D',
@@ -819,24 +818,6 @@
                         sendMessageToUnity('OnAchievementsGetListCompletedFailed', 'false')
                     })
             }
-            
-
-            console.log("VK TEST");
-            vkBridge.send("VKWebAppInit", {});
-            console.log(vkBridge);
-            vkBridge.subscribe((e) => {
-                if (e.detail.type === 'VKWebAppViewHide') {
-                    console.log(2);
-                    sendMessageToUnity('OnVisibleGame', false)
-                }
-            });
-
-            vkBridge.subscribe((e) => {
-                if (e.detail.type === 'VKWebAppViewRestore') {
-                    console.log(3);
-                    sendMessageToUnity('OnVisibleGame', true)
-                }
-            });
         </script>
     </body>
 </html>
