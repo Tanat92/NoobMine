@@ -61,6 +61,7 @@
             <div id="progress-bar"><div id="progress-bar-fill"></div></div>
         </div>
         <script src="./playgama-bridge.js"></script>
+        <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
         <script>
             if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
                 let meta = document.createElement('meta')
@@ -157,15 +158,29 @@
                         bridge.advertisement.showInterstitial()
                     }
 
+                    if (bridge.platform.id === bridge.PLATFORM_ID.VK) {
+                        vkBridge.subscribe((e) => {
+                            if (e.detail.type === 'VKWebAppViewHide') {
+                                sendMessageToUnity('OnVisibleGame', true)
+                            }
+                        });
+
+                        vkBridge.subscribe((e) => {
+                            if (e.detail.type === 'VKWebAppViewRestore') {
+                                sendMessageToUnity('OnVisibleGame', false)
+                            }
+                        });
+                    }
+
                     let unityLoader = document.createElement('script')
-                    unityLoader.src = 'Build/0c29f22549ad09f91ea6963c3fd26237.loader.js'
+                    unityLoader.src = 'Build/11b8e8d31ab246f497955dc3548feb00.loader.js'
                     unityLoader.onload = () => {
                         createUnityInstance(
                             canvas,
                             {
-                                dataUrl: 'Build/f9ab231b2fb53d7d12db58d557b1d9b3.data.unityweb',
+                                dataUrl: 'Build/f9da227da7c390fbd51d7632d57e0a25.data.unityweb',
                                 frameworkUrl: 'Build/c4600aed2c227190c2b6697dd818f6be.framework.js.unityweb',
-                                codeUrl: 'Build/97eaffca84f903dbb684f36651afb38d.wasm.unityweb',
+                                codeUrl: 'Build/2324be0ba9ccfc99aa5615e43def72ed.wasm.unityweb',
                                 streamingAssetsUrl: 'StreamingAssets',
                                 companyName: 'Tanat',
                                 productName: 'Mine2D',
