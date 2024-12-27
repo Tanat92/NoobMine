@@ -151,14 +151,14 @@
             vkBridge.subscribe((e) => {
                 if (e.detail.type === 'VKWebAppViewHide') {
                     console.log(2);
-                    sendMessageToUnity('OnVisibleGame', true)
+                    sendMessageToUnity('OnVisibleGame', false)
                 }
             });
 
             vkBridge.subscribe((e) => {
                 if (e.detail.type === 'VKWebAppViewRestore') {
                     console.log(3);
-                    sendMessageToUnity('OnVisibleGame', false)
+                    sendMessageToUnity('OnVisibleGame', true)
                 }
             });
 
