@@ -157,16 +157,20 @@
                     if (bridge.platform.id === bridge.PLATFORM_ID.GAME_DISTRIBUTION) {
                         bridge.advertisement.showInterstitial()
                     }
-
+                    console.log("VK TEST");
+                    console.log(vkbridge);
                     if (bridge.platform.id === bridge.PLATFORM_ID.VK) {
+                        console.log(1);
                         vkBridge.subscribe((e) => {
                             if (e.detail.type === 'VKWebAppViewHide') {
+                                console.log(2);
                                 sendMessageToUnity('OnVisibleGame', true)
                             }
                         });
 
                         vkBridge.subscribe((e) => {
                             if (e.detail.type === 'VKWebAppViewRestore') {
+                                console.log(3);
                                 sendMessageToUnity('OnVisibleGame', false)
                             }
                         });
